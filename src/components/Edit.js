@@ -8,10 +8,15 @@ const Edit = () => {
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
     axios
       .get(`https://student-management-system-server-ba7w.onrender.com/${_id}`)
-      .then((res) => setData(res.data))
+      .then((res) => setData({
+        "Name": res?.data?.Name,
+        "Age": Number(res?.data?.Age),
+        "City": res?.data?.City
+    }))
       .catch((err) => console.log(err));
   }, []);
 
@@ -58,7 +63,7 @@ const Edit = () => {
                 name="age"
                 className="form-control"
                 value={data.Age}
-                onChange={(e) => setData({ ...data, Age: e.target.value })}
+                onChange={(e) => setData({ ...data, Age:  Number(e.target.value) })}
               />
             </div>
             <div>
