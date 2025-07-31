@@ -8,7 +8,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/info')
+    axios.get('https://student-management-system-server-ba7w.onrender.com')
       .then(res => setRecords(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -16,9 +16,10 @@ const Main = () => {
   function handleDelete(id) {
     const conf = window.confirm('Do you want to delete?');
     if (conf) {
-      axios.delete(`http://localhost:5000/info/del/${id}`)
-        .then(res => {
+      axios.delete(`https://student-management-system-server-ba7w.onrender.com/${id}`)
+        .then(res => {          
           alert('Record has been deleted');
+          setRecords(res?.data?.data)
           navigate('/');
         })
         .catch(err => console.log(err));
